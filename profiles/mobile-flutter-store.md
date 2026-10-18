@@ -83,6 +83,9 @@ flutter test
 
 ## 6. Skills Recomendadas para el Agente
 
+### Decisiones de diseño: skills primero
+En toda decisión de diseño o visual (jerarquía, tarjeta o texto, componentes, tipografía, color, espaciado, estados), el agente carga y revisa antes las skills de diseño (`project-ui`, `material-design` y, según el caso, `flutter-build-responsive-layout` o `flutter-fix-layout-issues`), basa la propuesta en ellas e indica qué skill respalda cada opción. Al delegar trabajo de UI en subagentes, les pasa las rutas de esas skills.
+
 Para acelerar el desarrollo y mantener la calidad del código, el agente debe apoyarse en las siguientes skills o capacidades especializadas:
 
 | Skill | Finalidad |
@@ -90,4 +93,5 @@ Para acelerar el desarrollo y mantener la calidad del código, el agente debe ap
 | `flutter-add-widget-test` | Generación de pruebas automatizadas de widgets con verificación de bombeo de frames (`pumpAndSettle`), interacción táctil y aserciones de estado. |
 | `flutter-build-responsive-layout` | Construcción de layouts adaptables a diversas diagonales de pantalla, orientaciones (vertical/horizontal) y tablets con `LayoutBuilder` y `MediaQuery`. |
 | `flutter-fix-layout-issues` | Diagnóstico y resolución de desbordamientos de pantalla (`RenderFlex overflowed by X pixels`), restricciones intrínsecas y problemas de scroll anidado. |
+| `material-design` | Guía Material 3 destilada de fuentes oficiales para jerarquía, tarjetas vs texto, componentes, tipografía, color y espaciado. |
 | `project-ui` | Guía de estilo visual y sistema de diseño propio del proyecto (paleta de colores, tipografía, componentes reutilizables y estados de interacción). |

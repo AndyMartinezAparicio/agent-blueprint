@@ -49,8 +49,8 @@ flowchart LR
 1. **Idea inicial**: Se concibe la necesidad de producto o funcionalidad.
 2. **`BOOTSTRAP.md` (Entrevista Día 0)**: La IA formula preguntas estratégicas para desglosar objetivos, alcance, restricciones y arquitectura.
 3. **`docs/`**: Se formalizan los documentos de visión, especificación funcional, backlog de fases y ADRs (Architectural Decision Records).
-4. **`odd/tasks/<feature>.md`**: Implementación mediante *Opportunity-Driven Development* (ODD). Cada tarea incluye plan detallado, criterios de aceptación y tests unitarios previos al código productivo.
-5. **`gentle-ai review`**: Evaluación rigurosa bajo *Review-Driven Development* (RDD) para verificar adherencia arquitectónica, cobertura y atributos de calidad.
+4. **`odd/tasks/<feature>.md`**: Implementación mediante *Organic Driven Development* (ODD). Cada tarea incluye plan detallado, criterios de aceptación y tests unitarios previos al código productivo.
+5. **`gentle-ai review`**: Evaluación bajo *receipt-driven development / revisión nativa* (RDD) con `gentle-ai review assess` sobre los cambios del árbol de trabajo en cuanto se terminan, sin esperar a commits. Hacer commit no dispara otra revisión de los cambios ya revisados.
 6. **Merge a `develop`**: Integración continua en la rama activa mediante *pull request* o merge explícito con `--no-ff`.
 7. **Release a `main`**: Despliegue de versiones estables etiquetadas formalmente mediante etiquetas semánticas `vX.Y.Z`.
 
@@ -126,8 +126,8 @@ Antes de autorizar cualquier propuesta arquitectónica o bloque de código signi
 
 - **Agentes de IA**: Optimizado para **Claude Code**, **Google Antigravity**, **Cursor** y **OpenCode**.
 - **Gentle AI Suite**:
-  - **ODD (Opportunity-Driven Development)**: Gestión de tareas atómicas y tests ejecutables en `odd/tasks/`.
-  - **RDD (Review-Driven Development)**: Evaluación continua con `gentle-ai review assess`.
+  - **ODD (Organic Driven Development)**: Gestión de tareas atómicas y tests ejecutables en `odd/tasks/`.
+  - **RDD (receipt-driven development / revisión nativa)**: Evaluación con `gentle-ai review assess` sobre el árbol de trabajo en cuanto se terminan los cambios; comitear no re-ejecuta la revisión de cambios ya evaluados.
   - **Engram**: Preservación de memoria técnica de sesión a sesión.
   - **CodeGraph**: Comprensión semántica de símbolos antes de manipular código fuente.
 

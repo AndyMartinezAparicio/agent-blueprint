@@ -47,3 +47,13 @@ Antes de dar por completado un componente o vista, verifica:
 - [ ] ¿El área de pulsación de botones e iconos es de al menos 48x48dp?
 - [ ] ¿La pantalla gestiona adecuadamente estados de carga, error y vacío?
 - [ ] ¿Cumple estrictamente los requisitos funcionales de la fase activa sin añadir elementos extras?
+
+---
+
+## Related skills (installed in `.claude/skills/`)
+
+- `material-design`: generic Material 3 decisions (card vs text, hierarchy, component choice); this skill and DESIGN.md win on conflict.
+- `flutter-build-responsive-layout`: adaptive sizing and constraints.
+- `flutter-fix-layout-issues`: overflow and unbounded-constraint errors.
+- `flutter-add-widget-test`: `WidgetTester` patterns.
+

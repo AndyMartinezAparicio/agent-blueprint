@@ -36,7 +36,7 @@ Antes de iniciar cualquier acción, consulta exclusivamente la documentación co
 | Tipo de tarea | Qué leer obligatoriamente |
 | :--- | :--- |
 | **Nueva funcionalidad o cambio de lógica** | `docs/producto/requisitos.md` y la fase activa en `docs/plan/roadmap.md` |
-| **Diseño visual, componentes o estilos** | `design/DESIGN.md` y `.claude/skills/project-ui/SKILL.md` |
+| **Diseño visual, componentes o estilos** | `design/DESIGN.md`, `.claude/skills/project-ui/SKILL.md` y `.claude/skills/material-design/SKILL.md` |
 | **Arquitectura, estado o nuevas dependencias** | `docs/arquitectura/overview.md` y `docs/arquitectura/decisiones/` |
 | **Comandos de test, linter, build o entorno** | `docs/guias/desarrollo.md` |
 | **Consulta general o visión del producto** | `docs/README.md` y `docs/producto/vision.md` |
@@ -67,6 +67,8 @@ Antes de iniciar cualquier acción, consulta exclusivamente la documentación co
    - **Fiabilidad:** Tolerancia a fallos, manejo exhaustivo de excepciones y validaciones de bordes.
    - **Testeabilidad:** Código modular, inversión de dependencias y cobertura mediante tests unitarios y de integración.
    - **Accesibilidad:** Contrastes legibles, etiquetas semánticas y zonas de toque ergonómicas (mínimo 48x48dp).
+9. **Decisiones de diseño: skills primero.**  
+   En toda decisión de diseño o visual (jerarquía, tarjeta o texto, componentes, tipografía, color, espaciado, estados), el agente carga y revisa antes las skills de diseño (`project-ui`, `material-design` y, según el caso, las skills de layout del stack como `flutter-build-responsive-layout` o `flutter-fix-layout-issues`), basa la propuesta en ellas e indica qué skill respalda cada opción. Al delegar trabajo de UI en subagentes, les pasa las rutas de esas skills.
 
 ---
 
@@ -140,15 +142,21 @@ Todo ciclo de desarrollo debe seguir secuencialmente estos 11 pasos:
 
 ## Gentle AI (obligatorio)
 
-`AGENTS.md` prevalece siempre sobre las directrices genéricas del framework Gentle AI. La integración se rige por las siguientes herramientas:
+Este entorno usa **Gentle AI** (gentle-ai 4.2.0) como capa de configuración de agentes. Cualquier agente que trabaje aquí debe respetar sus convenciones.
 
-| Módulo / Herramienta | Rol y Comportamiento Esperado |
-| :--- | :--- |
-| **ODD (Operation-Driven Development)** | Seguimiento de tareas en `odd/tasks/<feature>.md`. Los cambios de estado no generan auto-commits. |
-| **RDD (Review-Driven Development)** | Ejecución de `gentle-ai review assess` sobre los cambios del working tree en cuanto se terminan de escribir, sin esperar a realizar commits. |
-| **Engram** | Memoria semántica persistente (`mem_save`, `mem_search`) para retener decisiones técnicas e incidencias entre sesiones. |
-| **Skill Registry** | Registro centralizado en `.atl/skill-registry.md` para skills locales del proyecto. |
-| **CodeGraph** | Índice estructural en `.codegraph/`. Consultar antes de realizar lecturas masivas de archivos. |
+**Prioridad: este AGENTS.md va por encima de Gentle AI.** Si una regla de Gentle AI (incluidas las que inyecta en `~/.claude/CLAUDE.md` o cambian al actualizarlo) contradice este archivo, se sigue este archivo y el agente avisa del conflicto al usuario. En particular, el uso de subagentes de la sección [Agentes y subagentes](#agentes-y-subagentes) y la aprobación de git y borrados prevalecen sobre el "trabajo en línea por defecto" de Gentle AI. Lo que este archivo no regula sigue las convenciones de Gentle AI.
+
+| Componente | Qué es | Qué exige |
+|---|---|---|
+| **ODD** (Organic Driven Development) | Flujo por defecto | El trabajo sustancial se registra en `odd/tasks/<feature>.md` (con espejo en Engram, topic `odd/<feature>/tasks`) antes de la primera escritura. Cada tarea se marca solo con evidencia. Las tareas pequeñas no crean documento. **Excepción de este proyecto:** los commits automáticos por tarea de ODD NO se hacen sin aprobación del usuario ([regla de Git](#git-y-borrados-obligatorio)). |
+| **RDD** (receipt-driven development / revisión nativa) | `gentle-ai review` | Activado globalmente. Cada candidato de riesgo medio o alto pide consentimiento al usuario (revisar o saltar). **Regla del proyecto:** la revisión se evalúa y se propone sobre los cambios del árbol de trabajo en cuanto se terminan (`gentle-ai review assess` sobre los cambios actuales), sin esperar a que haya commits. **Hacer commit no dispara otra revisión:** los cambios ya revisados en el árbol de trabajo se comitean sin revisarse otra vez, y la regla de Gentle AI de revisar tras cada commit (`--committed-only`) no se aplica en este proyecto. Si el commit incluye cambios que no se revisaron, esos sí se revisan antes de comitear. Nunca se elude ni se responde por el usuario. El usuario lo controla con `gentle-ai review mode status\|enable\|disable`. |
+| **Engram** | Memoria persistente entre sesiones | Guarda decisiones, descubrimientos y resúmenes de sesión. |
+| **Skill registry** | `.atl/skill-registry.md`, índice de skills | Se regenera con `gentle-ai skill-registry refresh`. El agente principal pasa las rutas de skills a los subagentes. La caché `.atl/.skill-registry.cache.json` no se versiona. |
+| **CodeGraph** | Índice de código en `.codegraph/` (local, ignorado por git) | Usarlo antes de búsquedas amplias en el código. |
+
+Las skills del proyecto viven en `.claude/skills/`: las propias `project-ui` y `material-design` (guía Material 3 destilada de fuentes oficiales), junto a las skills de apoyo del stack. Tras añadir o cambiar skills, ejecuta `gentle-ai skill-registry refresh`. Las skills de terceros se revisan antes de instalarlas. Gentle AI añade `.atl/` al `.gitignore` en cada refresco: `.atl/skill-registry.md` sigue versionado y sus cambios se suben con `git add -u .atl`. Sus rutas son absolutas de esta máquina; en otro equipo se regenera con `gentle-ai skill-registry refresh`.
+
+Los agentes que no soporten las herramientas de Gentle AI deben seguir al menos las convenciones escritas: archivos `odd/tasks/`, aprobación de git y revisión sin eludir.
 
 ---
 

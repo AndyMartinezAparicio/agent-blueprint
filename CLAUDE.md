@@ -36,10 +36,15 @@ Al invocar subagentes mediante la herramienta de subagentes en Claude Code, sele
 
 ---
 
+## 🎨 Decisiones de Diseño y UI (Skills Primero)
+
+- En decisiones de diseño o visuales, carga y revisa antes las skills de diseño (`project-ui`, `material-design` y, si aplica, las de layout como `flutter-build-responsive-layout` o `flutter-fix-layout-issues`), justifica cada opción con la skill que la respalda y pasa sus rutas a los subagentes de UI.
+
+---
+
 ## 🔍 Ciclo de Revisiones Nativas (Gentle AI Review)
 
-- Al realizar evaluaciones de calidad bajo el flujo de Review-Driven Development (RDD), respeta las transiciones formales de estado de `gentle-ai review`:
-  1. **Planning**: Identificación de riesgos y checklist de verificación.
-  2. **Assessment**: Evaluación de métricas y atributos con `gentle-ai review assess`.
-  3. **Decision**: Consulta activa y validación con el usuario.
-- **Punto de decisión humano**: Presenta siempre los hallazgos de forma clara y pide decisión explícita al desarrollador humano antes de cerrar una revisión o proceder con la fusión a ramas estables.
+- Sigue las transiciones de `gentle-ai review` tal como las devuelve la herramienta.
+- **Evaluación sobre el árbol de trabajo**: La revisión se evalúa y se propone sobre los cambios del árbol de trabajo en cuanto se terminan (`gentle-ai review assess` sobre los cambios actuales), sin esperar a que haya commits.
+- **Hacer commit no dispara otra revisión**: Los cambios ya revisados en el árbol de trabajo se comitean sin revisarse otra vez; la regla de Gentle AI de revisar tras cada commit (`--committed-only`) no se aplica en este proyecto. Si el commit incluye cambios que no se revisaron, esos sí se revisan antes de comitear.
+- **Punto de decisión humano**: Cada candidato de riesgo medio o alto pide consentimiento al usuario (revisar o saltar). Nunca se elude ni se responde por el usuario. El usuario lo controla con `gentle-ai review mode status|enable|disable`.

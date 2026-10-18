@@ -49,6 +49,7 @@ Elabora un resumen ejecutivo de inicialización estructurado que describa cómo 
 8. **`docs/guias/desarrollo.md`**: Comandos locales de compilación, ejecución de tests, linter y formateo.
 9. **`design/DESIGN.md`**: Tokens de diseño, archivo central de paleta, sistema de internacionalización y componentes base.
 10. **`.claude/skills/project-ui/SKILL.md`**: Skill adaptada a las directrices UI del proyecto.
+11. **`.claude/skills/material-design/SKILL.md`**: Skill adaptada con la guía de Material 3 para el proyecto.
 
 > **ALTO:** Presenta esta propuesta al usuario y solicita su confirmación:  
 > *"¿Estás de acuerdo con este plan de inicialización o deseas ajustar algún punto antes de escribir los archivos?"*
@@ -63,6 +64,7 @@ Tras recibir la aprobación explícita del usuario:
    - `AGENTS.md`
    - `design/DESIGN.md`
    - `.claude/skills/project-ui/SKILL.md`
+   - `.claude/skills/material-design/SKILL.md`
    - Toda la suite documental en `docs/` (`docs/producto/`, `docs/arquitectura/`, `docs/plan/`, `docs/guias/`).
 2. Inyecta fielmente las reglas del perfil seleccionado (por ejemplo, directrices de permisos para Android, políticas de Google Play, o arquitectura offline-first).
 3. Asegura que ningún archivo contenga placeholders sin resolver (`{{...}}`).

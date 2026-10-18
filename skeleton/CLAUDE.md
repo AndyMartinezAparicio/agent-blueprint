@@ -36,13 +36,14 @@
 
 ## 4. Evaluaciones RDD con Gentle AI Review
 
-- La revisión por Gentle AI (`gentle-ai review`) se ejecuta en modo continuo sobre los cambios del árbol de trabajo (*working tree*), **sin esperar a que se hagan commits**.
-- Transiciones operativas:
-  - Al completar la edición de un archivo o conjunto de cambios funcionales, ejecuta la evaluación de revisión:
-    ```bash
-    gentle-ai review assess
-    ```
-  - Si el informe arroja advertencias de calidad o lints, corrígelos de inmediato antes de solicitar la revisión humana.
+- Sigue las transiciones de `gentle-ai review` tal como las devuelve la herramienta.
+- La revisión (`gentle-ai review assess`) se evalúa sobre los cambios del árbol de trabajo (*working tree*) en cuanto se terminan, sin esperar a que haya commits:
+  ```bash
+  gentle-ai review assess
+  ```
+- **Hacer commit no dispara otra revisión:** los cambios ya revisados en el árbol de trabajo se comitean sin revisarse otra vez (la regla de `--committed-only` no se aplica en este proyecto). Si el commit incluye cambios que no se revisaron, esos sí se revisan antes de comitear.
+- En candidatos de riesgo medio o alto, se pide consentimiento al usuario (revisar o saltar) sin eludirlo ni responder por él.
+- Si el informe arroja advertencias de calidad o lints, corrígelos de inmediato antes de solicitar la revisión humana o proponer commits.
 
 ---
 
@@ -52,3 +53,4 @@
 2. **Prohibido el auto-commit:** Nunca ejecutes `git commit` directamente. Presenta siempre el comando exacto al usuario en formato *Conventional Commits* y espera su confirmación.
 3. **Flujo TDD:** Escribe primero la prueba que falle (RED), implementa el código mínimo para pasarla (GREEN) y refactoriza (REFACTOR).
 4. **Cero atribuciones de IA en Git:** Prohibido incluir menciones como `Co-Authored-By` o notas automáticas de IA en commits o PRs.
+5. **Decisiones de diseño (skills primero):** En decisiones de diseño o visuales, carga y revisa antes las skills de diseño (`project-ui`, `material-design` y, si aplica, `flutter-build-responsive-layout` o `flutter-fix-layout-issues`), justifica cada opción con la skill que la respalda y pasa sus rutas a los subagentes de UI.

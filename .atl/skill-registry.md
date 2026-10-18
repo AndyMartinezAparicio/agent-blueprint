@@ -45,12 +45,13 @@ El subagente leerá las directrices de dichas habilidades antes de manipular arc
 | :--- | :--- | :--- |
 | `core/doc-driven` | Obliga a consultar `docs/` como única fuente de verdad y validar contra requisitos funcionales. | Cualquier tarea funcional o de arquitectura. |
 | `core/git-conventions` | Define el formato de Conventional Commits y la política estricta de autoría humana sin firmas de IA. | Preparación de commits y verificación de ramas. |
-| `core/review-rdd` | Pautas de auditoría estricta de los 6 atributos de calidad antes de cerrar tareas ODD. | Etapas de revisión previa a merge. |
+| `core/review-rdd` | Pautas de auditoría estricta de los 6 atributos de calidad antes de cerrar tareas ODD. | Evaluación sobre el árbol de trabajo (working tree) en cuanto se terminan los cambios, sin re-ejecutar al comitear. |
 
 ### Habilidades de Especialización Técnica
 
 | ID de la Skill | Descripción | Contexto Recomendado |
 | :--- | :--- | :--- |
+| `material-design` | Guía Material 3 destilada de fuentes oficiales para jerarquía, tarjetas vs texto, componentes, tipografía, color y espaciado. | Perfil `mobile-flutter-store` y decisiones de diseño/UI en proyectos con componentes Material Design. |
 | `mobile/flutter-offline-first` | Buenas prácticas para arquitectura local-first, persistencia SQLite/Drift y repositorios desacoplados. | Perfil `mobile-flutter-store`. |
 | `mobile/clean-architecture` | Separación estricta en capas (Domain, Data, Presentation) y gestión reactiva de estado (BLoC / Riverpod). | Perfil `mobile-flutter-store`. |
 | `testing/unit-tdd` | Ciclo Red-Green-Refactor: escritura de pruebas unitarias previas al código productivo. | Tareas en `odd/tasks/`. |

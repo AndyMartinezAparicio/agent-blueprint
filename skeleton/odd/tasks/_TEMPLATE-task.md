@@ -27,8 +27,8 @@ Cada subtarea indica su ruta de ejecución:
 | **T2** | Implementación del modelo y lógica de negocio (TDD GREEN) | `delegated (Sonnet)` | `lib/...`, `src/...` | [ ] |
 | **T3** | Implementación / adaptación de UI y enlace con tokens de diseño | `delegated (Sonnet)` | `lib/ui/...`, `design/DESIGN.md` | [ ] |
 | **T4** | Ejecución de linter, formateo y refactorización limpia | `delegated (Haiku)` | Todo el changeset | [ ] |
-| **T5** | Revisión con Gentle AI (`gentle-ai review assess`) | `parent + user` | Árbol de trabajo (*working tree*) | [ ] |
-| **T6** | Propuesta de commits al usuario y validación en entorno real | `parent + user` | Git log / working tree | [ ] |
+| **T5** | Revisión con Gentle AI (`gentle-ai review assess` sobre el working tree al terminar cambios, antes de proponer commits) | `parent + user` | Árbol de trabajo (*working tree*) | [ ] |
+| **T6** | Propuesta de commits al usuario (comitear cambios ya revisados no dispara otra revisión) y validación en entorno real | `parent + user` | Git log / working tree | [ ] |
 
 ---
 
@@ -40,7 +40,7 @@ Antes de presentar la tarea al usuario como finalizada, deben cumplirse todos lo
 - [ ] **Tests Unitarios y de Integración en verde:** Todas las pruebas pasan exitosamente.
 - [ ] **Cero strings quemados:** Todos los textos visibles utilizan el sistema de internacionalización.
 - [ ] **Cero colores hardcodeados:** Se emplean exclusivamente los tokens de `design/DESIGN.md`.
-- [ ] **Revisión RDD:** Informe de `gentle-ai review assess` superado sin incidencias abiertas.
+- [ ] **Revisión RDD:** Evaluación con `gentle-ai review assess` superada sobre los cambios del árbol de trabajo en cuanto se terminan de escribir (antes de proponer commits; comitear cambios ya revisados no dispara otra revisión).
 
 ---
 
@@ -57,9 +57,10 @@ Antes de presentar la tarea al usuario como finalizada, deben cumplirse todos lo
 ```
 
 ### 3. Evaluaciones de Gentle AI Review
+*(La revisión con `gentle-ai review assess` se evalúa sobre el árbol de trabajo al terminar los cambios, antes de proponer commits. Hacer commit de cambios ya revisados no dispara otra revisión).*
 - **ID de Evaluación:** `REV-{{ID}}`
 - **Resultado:** Aprobado / Sin observaciones críticas pendientes.
 
 ### 4. Commits Aprobados
-*(Los commits se proponen al usuario antes de ejecutarse; registrar aquí los hashes finales una vez confirmados).*
+*(Los commits se proponen al usuario antes de ejecutarse; los cambios ya revisados en el árbol de trabajo no se vuelven a revisar. Registrar aquí los hashes finales una vez confirmados).*
 - `feat(modulo): {{descripcion del commit}}` — `hash: {{HASH}}`
