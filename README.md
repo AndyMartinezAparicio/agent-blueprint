@@ -61,20 +61,24 @@ flowchart LR
 Este repositorio ofrece dos modalidades operativas según tu objetivo:
 
 ### Modo 1 — Crear un proyecto nuevo desde cero
-Utiliza esta plantilla para arrancar un desarrollo limpio con la estructura de ingeniería preconfigurada:
-1. Copia el contenido de la carpeta `skeleton/` en el directorio de tu nuevo proyecto.
-2. Selecciona el perfil tecnológico adecuado desde `profiles/` (por ejemplo, `profiles/mobile-flutter-store.md`) y añádelo a la documentación técnica de tu nuevo proyecto.
-3. Abre tu entorno de IA favorito (Claude Code, Antigravity, Cursor, OpenCode) en la raíz del nuevo proyecto.
-4. Indica al agente de IA la instrucción de inicio:
-   ```text
-   Lee BOOTSTRAP.md e inicializa este proyecto.
-   ```
-5. Responde a la entrevista guiada para generar la base documental y la configuración inicial de tu aplicación.
+Utiliza esta plantilla para arrancar un desarrollo limpio con la estructura de ingeniería preconfigurada. Puedes elegir entre dos modalidades:
+
+- **Opción A — Asistida desde `agent-blueprint` (Recomendada)**: Abre tu agente en la raíz de esta plantilla y pídele inicializar el nuevo proyecto en otra ruta indicando el perfil deseado:
+  ```text
+  Inicializa un nuevo proyecto en "<RUTA_ABSOLUTA_DESTINO>" usando el perfil "profiles/mobile-flutter-store.md" y ejecuta el protocolo de skeleton/BOOTSTRAP.md.
+  ```
+- **Opción B — Copia manual**: Copia el contenido íntegro de `skeleton/` (incluyendo carpetas ocultas) a la carpeta destino, abre tu agente de IA allí y envía:
+  ```text
+  Lee BOOTSTRAP.md e inicializa este proyecto. (Opcional: Usa el perfil en <RUTA_A_AGENT_BLUEPRINT>/profiles/mobile-flutter-store.md)
+  ```
+
+> [!TIP]
+> Consulta la [**Guía Completa de Creación de Proyectos**](docs/guias/crear-proyecto.md) para ver los comandos de terminal (PowerShell y Bash), la chuleta (*cheat-sheet*) de preguntas para la entrevista del Día 0 y la lista de verificación final.
 
 ### Modo 2 — Mejorar o ampliar esta plantilla
 Si deseas contribuir o personalizar el propio sistema Agent Blueprint:
 1. Abre la raíz de `agent-blueprint` con tu agente de IA.
-2. El agente detectará automáticamente el contexto dual definido en [AGENTS.md](file:///C:/Users/Andy/Desktop/Proyectos%20extras/agent-blueprint/AGENTS.md).
+2. El agente detectará automáticamente el contexto dual definido en [AGENTS.md](AGENTS.md).
 3. Consulta `docs/plan/roadmap.md` para trabajar en la creación de nuevos perfiles de plataforma (`profiles/web-react.md`, `profiles/desktop-tauri.md`), refinar habilidades de Gentle AI o perfeccionar las directrices de orquestación.
 
 ---
@@ -90,8 +94,10 @@ agent-blueprint/
 ├── CLAUDE.md                      # Adaptaciones operativas para Claude Code
 ├── README.md                      # Este documento
 ├── docs/                          # Documentación del sistema y hoja de ruta
+│   ├── guias/                     # Guías prácticas y tutoriales de uso
+│   │   └── crear-proyecto.md      # Guía canónica paso a paso para inicializar proyectos
 │   ├── plan/                      # Roadmap y evolución de la plantilla
-│   └── architecture/              # Principios de diseño del blueprint
+│   └── arquitectura/              # Principios de diseño del blueprint y ADRs
 ├── profiles/                      # Perfiles técnicos por plataforma
 │   └── mobile-flutter-store.md    # Perfil Mobile Flutter (Offline-First, Store-ready)
 └── skeleton/                      # Esqueleto limpio para instanciar nuevos proyectos
