@@ -3,7 +3,7 @@
 Este perfil define las directrices técnicas, normativas y de calidad para aplicaciones móviles desarrolladas con **Flutter** cuyo destino final sea la distribución oficial a través de tiendas como **Google Play Store** o **Apple App Store**.
 
 > [!IMPORTANT]
-> Este perfil condensa las lecciones aprendidas y mejores prácticas del proyecto *Purge*. Al inicializar un proyecto con este perfil mediante `skeleton/BOOTSTRAP.md`, estas reglas deben integrarse en el `AGENTS.md`, `docs/desarrollo.md` y `docs/requerimientos/sistema.md` del nuevo repositorio.
+> Este perfil condensa las lecciones aprendidas y mejores prácticas para aplicaciones móviles. Al inicializar un proyecto con este perfil mediante `skeleton/BOOTSTRAP.md`, estas reglas deben integrarse en el `AGENTS.md`, `docs/guias/desarrollo.md` y `docs/producto/requisitos.md` del nuevo repositorio.
 
 ---
 
@@ -64,9 +64,13 @@ Este perfil define las directrices técnicas, normativas y de calidad para aplic
 
 ---
 
-## 5. Comandos de Validación Pre-Commit
+## 5. Comandos de Validación Pre-Commit (Fase 1 en adelante)
 
-Antes de considerar concluida cualquier tarea o realizar un commit en Git, deben ejecutarse y aprobarse sin excepción los siguientes comandos:
+> [!NOTE]
+> **Alcance del Día 0 vs. Fase 1**: El Día 0 (`BOOTSTRAP.md`) es estrictamente documental y de gobernanza; no se genera código fuente ni se requiere la existencia de `pubspec.yaml` ni la ejecución de comandos del stack en el Día 0. La inicialización del proyecto Flutter (`flutter create`, configuración de dependencias) pertenece a la Tarea 1 de la Fase 1. Los siguientes comandos de validación aplican a partir de la Fase 1 en adelante, una vez que el código y el proyecto Flutter han sido creados en disco.
+> Asimismo, el `.gitignore` del nuevo proyecto debe incluir las exclusiones estándar de Flutter y Dart (`.dart_tool/`, `build/`, `.flutter-plugins*`, `.packages`).
+
+Antes de considerar concluida cualquier tarea o realizar un commit en Git a partir de la Fase 1, deben ejecutarse y aprobarse sin excepción los siguientes comandos:
 
 ```bash
 # 1. Análisis estático del código Dart/Flutter (debe reportar 0 errores y 0 warnings)
@@ -85,6 +89,8 @@ flutter test
 
 ### Decisiones de diseño: skills primero
 En toda decisión de diseño o visual (jerarquía, tarjeta o texto, componentes, tipografía, color, espaciado, estados), el agente carga y revisa antes las skills de diseño (`project-ui`, `material-design` y, según el caso, `flutter-build-responsive-layout` o `flutter-fix-layout-issues`), basa la propuesta en ellas e indica qué skill respalda cada opción. Al delegar trabajo de UI en subagentes, les pasa las rutas de esas skills.
+
+Las skills `project-ui` y `material-design` vienen preinstaladas e integradas en `skeleton/.claude/skills/`. Por su parte, las skills especializadas de Flutter (`flutter-add-widget-test`, `flutter-build-responsive-layout`, `flutter-fix-layout-issues`) se instalan al inicializar el proyecto Flutter en la Fase 1 (o desde el catálogo de skills reutilizables de la Fase 4 de `agent-blueprint`).
 
 Para acelerar el desarrollo y mantener la calidad del código, el agente debe apoyarse en las siguientes skills o capacidades especializadas:
 

@@ -6,6 +6,9 @@
 
 Este protocolo guía la transición de un repositorio vacío o plantilla base (`agent-blueprint`) a un proyecto completamente configurado, documentado y listo para desarrollo profesional bajo la metodología de Andy.
 
+> [!NOTE]
+> **Alcance del Día 0**: El Día 0 es estrictamente documental y de gobernanza. No se genera lógica de negocio ni se exige que los comandos de compilación o test del stack corran en el Día 0 (estos se activan en la Fase 1 al inicializar el proyecto de código en disco).
+
 ---
 
 ## Fase 1 — Entrevista de Descubrimiento
@@ -45,7 +48,7 @@ Elabora un resumen ejecutivo de inicialización estructurado que describa cómo 
 4. **`docs/arquitectura/overview.md`**: Arquitectura elegida (capas, gestión de estado, dependencias principales).
 5. **`docs/arquitectura/decisiones/0001-stack-y-arquitectura-inicial.md`**: Registro de Decisión de Arquitectura (ADR) fundacional justificando la elección tecnológica.
 6. **`docs/plan/roadmap.md`**: Desglose en fases (Fase 1: Fundación / MVP base, Fase 2: Funcionalidades núcleo, etc.).
-7. **`docs/plan/fases/fase-01-*.md`**: Detalle minucioso de tareas para arrancar la primera fase.
+7. **`docs/plan/fases/fase-01-fundacion.md`**: Detalle minucioso de tareas para arrancar la primera fase (Fundación).
 8. **`docs/guias/desarrollo.md`**: Comandos locales de compilación, ejecución de tests, linter y formateo.
 9. **`design/DESIGN.md`**: Tokens de diseño, archivo central de paleta, sistema de internacionalización y componentes base.
 10. **`.claude/skills/project-ui/SKILL.md`**: Skill adaptada a las directrices UI del proyecto.
@@ -62,13 +65,16 @@ Tras recibir la aprobación explícita del usuario:
 
 1. Rellena todos los marcadores de posición (`{{...}}`) en:
    - `AGENTS.md`
+   - `README.md`
    - `design/DESIGN.md`
    - `.claude/skills/project-ui/SKILL.md`
    - `.claude/skills/material-design/SKILL.md`
    - Toda la suite documental en `docs/` (`docs/producto/`, `docs/arquitectura/`, `docs/plan/`, `docs/guias/`).
 2. Inyecta fielmente las reglas del perfil seleccionado (por ejemplo, directrices de permisos para Android, políticas de Google Play, o arquitectura offline-first).
-3. Asegura que ningún archivo contenga placeholders sin resolver (`{{...}}`).
-4. Presenta al usuario un resumen de los archivos creados o actualizados.
+3. Asegura que ningún archivo concreto contenga placeholders sin resolver (`{{...}}`).
+   > **Exención intencional de plantillas:** Los archivos de plantilla reutilizable (`_TEMPLATE-adr.md`, `_TEMPLATE-fase.md` y `_TEMPLATE-task.md`) conservan sus placeholders intencionalmente para su uso futuro en nuevas decisiones, fases o tareas.
+4. **Coherencia de árboles y rutas:** Si el proceso de inicialización se delega en subagentes en paralelo, el árbol de carpetas de `README.md`, `docs/arquitectura/overview.md` y la estructura en disco deben ser 100% idénticos y coherentes.
+5. Presenta al usuario un resumen de los archivos creados o actualizados.
 
 ---
 
@@ -83,18 +89,18 @@ Una vez completada la documentación fundacional:
    Presenta al usuario los comandos precisos para arrancar el control de versiones y refrescar el registro de skills:
 
    ```powershell
-   # Inicializar repositorio Git y rama principal
+   # 1. Inicializar repositorio Git y rama principal
    git init -b main
 
-   # Añadir documentación fundacional y realizar el primer commit
+   # 2. Refrescar registro de skills de Gentle AI (genera/actualiza .atl/skill-registry.md)
+   gentle-ai skill-registry refresh
+
+   # 3. Añadir documentación fundacional y realizar el primer commit (incluyendo .atl/skill-registry.md)
    git add .
    git commit -m "docs: inicializar arquitectura y documentacion fundacional"
 
-   # Crear y posicionarse en la rama de trabajo develop
+   # 4. Crear y posicionarse en la rama de trabajo develop
    git checkout -b develop
-
-   # Refrescar registro de skills de Gentle AI (si aplica)
-   gentle-ai skill-registry refresh
    ```
 
 3. Espera la confirmación del usuario antes de ejecutar o dar por cerrado el protocolo de inicio.

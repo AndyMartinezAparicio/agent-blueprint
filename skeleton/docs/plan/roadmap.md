@@ -9,11 +9,11 @@
 
 | Fase | Título | Versión | Estado | Documento de Fase |
 |:---:|:---|:---:|:---:|:---|
-| **01** | Base, tema y datos de prueba | `v0.1.0` | **Pendiente** | [fase-01-base-tema-datos.md](fases/fase-01-base-tema-datos.md) |
-| **02** | {{TITULO_FASE_02}} | `v0.2.0` | **Pendiente** | [fase-02-{{SLUG_02}}.md](fases/fase-02-{{SLUG_02}}.md) |
-| **03** | {{TITULO_FASE_03}} | `v0.3.0` | **Pendiente** | [fase-03-{{SLUG_03}}.md](fases/fase-03-{{SLUG_03}}.md) |
-| **04** | {{TITULO_FASE_04}} | `v0.4.0` | **Pendiente** | [fase-04-{{SLUG_04}}.md](fases/fase-04-{{SLUG_04}}.md) |
-| **05** | Pulido final y preparación de lanzamiento | `v1.0.0` | **Pendiente** | [fase-05-lanzamiento-v1.md](fases/fase-05-lanzamiento-v1.md) |
+| **01** | Base, tema y datos de prueba | `v0.1.0` | **Pendiente** | [fase-01-fundacion.md](fases/fase-01-fundacion.md) |
+| **02** | {{TITULO_FASE_02}} | `v0.2.0` | **Pendiente** | `fase-02-{{SLUG_02}}.md` |
+| **03** | {{TITULO_FASE_03}} | `v0.3.0` | **Pendiente** | `fase-03-{{SLUG_03}}.md` |
+| **04** | {{TITULO_FASE_04}} | `v0.4.0` | **Pendiente** | `fase-04-{{SLUG_04}}.md` |
+| **05** | Pulido final y preparación de lanzamiento | `v1.0.0` | **Pendiente** | `fase-05-lanzamiento-v1.md` |
 
 *Estados posibles:*
 - ⚪ `Pendiente`: Fase planificada, aún no iniciada.
