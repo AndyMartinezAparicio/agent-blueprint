@@ -79,5 +79,5 @@ A continuación se detallan los comandos estándar para el ciclo de vida de desa
 
 | Fecha | Identificador / Área | Descripción | Impacto / Mitigación temporal | Estado |
 |:---:|:---|:---|:---|:---:|
-| {{FECHA}} | Entorno / Build | {{DESCRIPCION_INCIDENCIA}} | {{MITIGACION}} | Abierto |
-| {{FECHA}} | Rendimiento | {{DESCRIPCION_DEUDA}} | {{MITIGACION}} | En seguimiento |
+<!-- Formato de ejemplo: | AAAA-MM-DD | Entorno / Build | Incompatibilidad temporal de librerías | Fijar versión específica en configuración | Abierto | -->
+| - | - | *Sin incidencias ni deuda técnica registrada en la inicialización (Día 0).* | Ninguno | N/A |

@@ -8,7 +8,7 @@ Esta guía explica en detalle cómo iniciar un nuevo proyecto de software desde 
 
 El proceso de creación de un nuevo proyecto se apoya en tres componentes coordinados:
 
-1. **`skeleton/`**: El esqueleto universal del proyecto. Contiene la arquitectura documental base (`docs/`), los tokens de diseño (`design/`), la configuración de herramientas de IA (`AGENTS.md`, `CLAUDE.md`, `.claude/skills/`), el registro de skills (`.atl/`) y el protocolo de inicio (`BOOTSTRAP.md`).
+1. **`skeleton/`**: El esqueleto universal del proyecto. Contiene la arquitectura documental base (`docs/`), los tokens de diseño (`design/`), la configuración de herramientas de IA (`AGENTS.md`, `CLAUDE.md`, `.claude/skills/`), el registro de skills (`.atl/`, generado al ejecutar `gentle-ai skill-registry refresh`) y el protocolo de inicio (`BOOTSTRAP.md`).
 2. **`profiles/`**: Catálogo de perfiles técnicos especializados (por ejemplo, `mobile-flutter-store.md`). Aportan reglas normativas, directrices de tiendas de aplicaciones, comandos de pre-commit y atributos de calidad propios de cada plataforma.
 3. **`BOOTSTRAP.md`**: El protocolo interactivo que ejecuta tu agente de IA en el "Día 0" para entrevistar al desarrollador, proponer el plan documental, rellenar los marcadores de posición (`{{...}}`), inyectar las reglas del perfil y dejar el repositorio configurado con Git y Gentle AI.
 
@@ -93,6 +93,9 @@ Lee BOOTSTRAP.md e inicializa este proyecto. (Opcional: Usa el perfil en <RUTA_A
 
 ## 3. El Protocolo Día 0: Qué esperar en cada fase (`BOOTSTRAP.md`)
 
+> [!NOTE]
+> **Alcance del Día 0**: El Día 0 es estrictamente documental y de gobernanza. No se genera lógica de negocio ni se exige que los comandos de compilación o test del stack corran en el Día 0 (estos se activan en la Fase 1 al inicializar el proyecto de código en disco).
+
 Una vez iniciado el protocolo, el agente de IA guiará la inicialización a través de cuatro fases estandarizadas:
 
 ```mermaid
@@ -138,7 +141,9 @@ Una vez contestadas las preguntas, **el agente no escribirá archivos de inmedia
 Tras recibir tu aprobación:
 - El agente sustituye todos los marcadores de posición (`{{...}}`) en `AGENTS.md`, `README.md`, `design/` y `docs/`.
 - Inyecta fielmente las reglas técnicas, normativas y de privacidad del perfil seleccionado (por ejemplo, directrices de permisos para Android, políticas de Google Play o almacenamiento offline).
-- Garantiza que **no quede ningún placeholder sin resolver** en todo el proyecto.
+- Garantiza que **no quede ningún placeholder sin resolver en ningún archivo concreto del proyecto**.
+  > **Exención intencional de plantillas:** Los archivos de plantilla reutilizable (`_TEMPLATE-adr.md`, `_TEMPLATE-fase.md` y `_TEMPLATE-task.md`) conservan sus placeholders intencionalmente para su uso futuro en nuevas decisiones, fases o tareas.
+- **Coherencia de árboles y rutas**: Si el proceso se delega en subagentes en paralelo, el árbol de carpetas de `README.md`, `docs/arquitectura/overview.md` y la estructura en disco deben ser 100% idénticos y coherentes.
 - Presenta un informe detallado con los archivos creados y actualizados.
 
 ---
@@ -153,15 +158,15 @@ Para culminar el Día 0:
 # 1. Inicializar repositorio Git y rama principal
 git init -b main
 
-# 2. Registrar documentación fundacional en el primer commit
+# 2. Refrescar el registro de skills de Gentle AI (genera/actualiza .atl/skill-registry.md)
+gentle-ai skill-registry refresh
+
+# 3. Registrar documentación fundacional en el primer commit (incluyendo .atl/skill-registry.md)
 git add .
 git commit -m "docs: inicializar arquitectura y documentacion fundacional"
 
-# 3. Crear y cambiar a la rama de integración continua develop
+# 4. Crear y cambiar a la rama de integración continua develop
 git checkout -b develop
-
-# 4. Refrescar el registro de skills de Gentle AI
-gentle-ai skill-registry refresh
 ```
 
 ---
@@ -171,7 +176,7 @@ gentle-ai skill-registry refresh
 Antes de dar por concluida la inicialización, comprueba los siguientes puntos:
 
 - [ ] **Limpieza**: El archivo `BOOTSTRAP.md` ya no existe en el repositorio del nuevo proyecto.
-- [ ] **Sin marcadores**: No queda ningún marcador `{{...}}` sin resolver en `AGENTS.md`, `README.md`, `docs/`, `design/` ni `.claude/skills/`.
+- [ ] **Sin marcadores**: No queda ningún marcador `{{...}}` sin resolver en archivos concretos de `AGENTS.md`, `README.md`, `docs/`, `design/` ni `.claude/skills/` (los archivos de plantilla reutilizable `_TEMPLATE-*.md` los conservan intencionalmente).
 - [ ] **Ramas Git configuradas**:
   - Rama `main` creada con el commit inicial fundacional (`docs: inicializar arquitectura y documentacion fundacional`).
   - Rama activa `develop` creada a partir de `main` y lista para recibir ramas de trabajo.

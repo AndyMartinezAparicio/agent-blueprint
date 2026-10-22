@@ -2,6 +2,9 @@
 
 > Este documento describe la arquitectura técnica fundamental de **{{NOMBRE_PROYECTO}}**, definiendo la organización modular, los límites de responsabilidad entre capas, las reglas de dependencia e inversión de control y el catálogo de Decisiones de Arquitectura (ADR).
 
+> [!NOTE]
+> **Estado en Día 0**: Esta estructura y capas representan la arquitectura fundacional acordada para el proyecto. En el Día 0 no se genera código fuente ni se requiere compilar; los directorios y la implementación concreta del código dentro de `{{CARPETA_CODIGO}}/` se inicializan a partir de la Fase 1 del roadmap.
+
 ---
 
 ## 1. Estructura de Carpetas del Código
@@ -94,7 +97,7 @@ Las decisiones técnicas de impacto significativo se documentan formalmente como
 
 > **Regla de Inmutabilidad:**
 > Un ADR en estado **Aceptado** jamás se edita ni se sobrescribe para reflejar un cambio técnico posterior.
-> Si una decisión previa queda obsoleta o se modifica el rumbo técnico, se redacta un **nuevo ADR** que explícitamente marca el anterior como **Sustituido por ADR XXXX**.
+> Si una decisión previa queda obsoleta o se modifica el rumbo técnico, se redacta un **nuevo ADR** que explícitamente marca el anterior como **Sustituido por ADR 0001** (o el identificador del nuevo ADR que lo sustituya).
 
 ### Registro Histórico
 

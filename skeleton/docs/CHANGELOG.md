@@ -10,31 +10,9 @@ y este proyecto se adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Sin publicar]
 
 ### Añadido
-- {{DESCRIPCION_FUNCIONALIDAD_NUEVA}}
-
-### Cambiado
-- {{DESCRIPCION_CAMBIO_COMPORTAMIENTO}}
-
-### Obsoleto
-- {{DESCRIPCION_ELEMENTOS_EN_DESUSO}}
-
-### Eliminado
-- {{DESCRIPCION_ELEMENTOS_REMOVIDOS}}
-
-### Corregido
-- {{DESCRIPCION_CORRECCION_ERROR}}
-
-### Seguridad
-- {{DESCRIPCION_MEJORA_O_PARCHE_SEGURIDAD}}
-
----
-
-## [0.1.0] - {{FECHA_RELEASE_YYYY_MM_DD}}
-
-### Añadido
-- Fase 1 inicial: configuración base del proyecto, tema visual y estructura modular.
-- Documentación inicial de arquitectura, requisitos y roadmap.
-- Configuración de tooling, linter y suite de pruebas base.
+- Inicialización y gobernanza documental fundacional (Día 0).
+- Documentación inicial de arquitectura, requisitos, guías de desarrollo y roadmap maestro.
+- Definición de tokens de diseño y directrices operativas de agentes de IA.
 
 ---
 
