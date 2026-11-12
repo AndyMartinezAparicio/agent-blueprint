@@ -16,6 +16,7 @@ Para evitar duplicidades e inconsistencias en la gobernanza de la plantilla, cad
 | **Roadmap y Fases de la Plantilla** | [`docs/plan/roadmap.md`](plan/roadmap.md) | Estado oficial de versiones (`v0.1.0`, `v0.2.0`, etc.) y reglas de avance. |
 | **Especificación de Fase Actual** | [`docs/plan/fases/fase-01-nucleo-y-perfil-movil.md`](plan/fases/fase-01-nucleo-y-perfil-movil.md) | Alcance, criterios de aceptación y checklist de la Fase 1. |
 | **Guía de Creación de Proyectos** | [`docs/guias/crear-proyecto.md`](guias/crear-proyecto.md) | Paso a paso detallado para inicializar un nuevo proyecto desde esta plantilla. |
+| **Configurar un Equipo Nuevo** | [`docs/guias/configurar-equipo.md`](guias/configurar-equipo.md) | Prerrequisitos, reglas personales, hook de revisión y memoria para trabajar con agentes en un ordenador nuevo. |
 | **Arquitectura de la Plantilla** | [`docs/arquitectura/overview.md`](arquitectura/overview.md) | Modelo de 3 piezas: Raíz de gobernanza, `skeleton/` y `profiles/`. |
 | **Registro de Decisiones (ADR)** | [`docs/arquitectura/decisiones/`](arquitectura/decisiones/) | Registro inmutable de decisiones metodológicas y estructurales del blueprint. |
 | **Historial de Versiones** | [`docs/CHANGELOG.md`](CHANGELOG.md) | Registro cronológico de cambios, mejoras y correcciones por versión. |
@@ -30,7 +31,8 @@ docs/
 ├── README.md                          # Este índice central
 ├── CHANGELOG.md                       # Historial de cambios de agent-blueprint
 ├── guias/
-│   └── crear-proyecto.md              # Guía paso a paso para inicializar nuevos proyectos
+│   ├── crear-proyecto.md              # Guía paso a paso para inicializar nuevos proyectos
+│   └── configurar-equipo.md           # Configuración de un equipo nuevo para trabajar con agentes
 ├── plan/
 │   ├── roadmap.md                     # Roadmap general de evolución de la plantilla
 │   └── fases/

@@ -59,7 +59,13 @@ Este perfil define las directrices técnicas, normativas y de calidad para aplic
 1. **Pruebas exclusivas en dispositivo físico por USB**:
    - Por restricciones de espacio en disco y consumo de hardware en estaciones Windows, **está prohibido instalar SDKs adicionales no acordados, imágenes pesadas del sistema o emuladores de Android Studio sin autorización explícita**.
    - Toda validación interactiva y depuración en vivo se ejecuta sobre un dispositivo móvil físico conectado mediante depuración USB (`adb devices`).
-2. **Validación de tests sin emulador**:
+   - **El agente no ejecuta `flutter build`, `flutter run` ni `flutter install` sin permiso del usuario**, que compila él mismo; si hay un motivo importante para hacerlo, lo explica y pide permiso.
+2. **Pruebas pendientes en el móvil sin parar el desarrollo**:
+   - El agente apunta en `docs/plan/pruebas-pendientes.md` cada prueba que el usuario debe hacer en su móvil (pasos y resultado esperado) y sigue con la siguiente tarea; el usuario las hace todas juntas cuando tiene tiempo y un fallo se convierte en una tarea nueva.
+   - **Excepción, riesgo alto:** las pruebas de gestos, borrado, anuncios y compras se piden en cuanto se termina su tarea (sin bloquear la siguiente), no al cerrar la fase.
+3. **Anuncios durante el desarrollo**:
+   - Se usan únicamente los identificadores de prueba oficiales de Google (AdMob) y nunca se pulsan los anuncios reales propios, para evitar tráfico no válido y la suspensión de la cuenta. Los anuncios de prueba sí se pueden pulsar para comprobar el flujo.
+4. **Validación de tests sin emulador**:
    - Las pruebas automatizadas deben diseñarse como **tests unitarios puros** y **widget tests de Flutter**, los cuales corren en milisegundos en la máquina local de desarrollo mediante el motor headless de pruebas de Flutter, sin necesidad de arrancar dispositivos ni emuladores.
 
 ---
@@ -70,7 +76,7 @@ Este perfil define las directrices técnicas, normativas y de calidad para aplic
 > **Alcance del Día 0 vs. Fase 1**: El Día 0 (`BOOTSTRAP.md`) es estrictamente documental y de gobernanza; no se genera código fuente ni se requiere la existencia de `pubspec.yaml` ni la ejecución de comandos del stack en el Día 0. La inicialización del proyecto Flutter (`flutter create`, configuración de dependencias) pertenece a la Tarea 1 de la Fase 1. Los siguientes comandos de validación aplican a partir de la Fase 1 en adelante, una vez que el código y el proyecto Flutter han sido creados en disco.
 > Asimismo, el `.gitignore` del nuevo proyecto debe incluir las exclusiones estándar de Flutter y Dart (`.dart_tool/`, `build/`, `.flutter-plugins*`, `.packages`).
 
-Antes de considerar concluida cualquier tarea o realizar un commit en Git a partir de la Fase 1, deben ejecutarse y aprobarse sin excepción los siguientes comandos:
+Mientras se trabaja solo se ejecutan los tests del módulo que se toca; la suite completa (`flutter test`) se ejecuta **una vez antes de cada commit**, no tras cada cambio. Antes de considerar concluida cualquier tarea o realizar un commit en Git a partir de la Fase 1, deben ejecutarse y aprobarse sin excepción los siguientes comandos:
 
 ```bash
 # 1. Análisis estático del código Dart/Flutter (debe reportar 0 errores y 0 warnings)

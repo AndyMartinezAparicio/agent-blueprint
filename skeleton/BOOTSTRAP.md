@@ -49,10 +49,12 @@ Elabora un resumen ejecutivo de inicialización estructurado que describa cómo 
 5. **`docs/arquitectura/decisiones/0001-stack-y-arquitectura-inicial.md`**: Registro de Decisión de Arquitectura (ADR) fundacional justificando la elección tecnológica.
 6. **`docs/plan/roadmap.md`**: Desglose en fases (Fase 1: Fundación / MVP base, Fase 2: Funcionalidades núcleo, etc.).
 7. **`docs/plan/fases/fase-01-fundacion.md`**: Detalle minucioso de tareas para arrancar la primera fase (Fundación).
-8. **`docs/guias/desarrollo.md`**: Comandos locales de compilación, ejecución de tests, linter y formateo.
+8. **`docs/guias/desarrollo.md`**: Comandos locales de compilación, ejecución de tests, linter y formateo, más las notas de "antes de cada commit" y "equipo nuevo con Gentle AI".
 9. **`design/DESIGN.md`**: Tokens de diseño, archivo central de paleta, sistema de internacionalización y componentes base.
 10. **`.claude/skills/project-ui/SKILL.md`**: Skill adaptada a las directrices UI del proyecto.
 11. **`.claude/skills/material-design/SKILL.md`**: Skill adaptada con la guía de Material 3 para el proyecto.
+12. **`docs/plan/pruebas-pendientes.md`**: Lista de pruebas en dispositivo que el usuario hace sin frenar el desarrollo (se rellena por versión durante el desarrollo; en el Día 0 solo se adapta el encabezado).
+13. **`.gitattributes`** y **`.claude/gentle-ai-stop-hook.off`**: Se conservan tal cual vienen en `skeleton/` (finales de línea LF y aviso de revisión al final de cada respuesta desactivado; la revisión se hace por módulos).
 
 > **ALTO:** Presenta esta propuesta al usuario y solicita su confirmación:  
 > *"¿Estás de acuerdo con este plan de inicialización o deseas ajustar algún punto antes de escribir los archivos?"*
@@ -69,12 +71,14 @@ Tras recibir la aprobación explícita del usuario:
    - `design/DESIGN.md`
    - `.claude/skills/project-ui/SKILL.md`
    - `.claude/skills/material-design/SKILL.md`
+   - `docs/plan/pruebas-pendientes.md` (encabezado y unidad de prueba del perfil)
    - Toda la suite documental en `docs/` (`docs/producto/`, `docs/arquitectura/`, `docs/plan/`, `docs/guias/`).
 2. Inyecta fielmente las reglas del perfil seleccionado (por ejemplo, directrices de permisos para Android, políticas de Google Play, o arquitectura offline-first).
-3. Asegura que ningún archivo concreto contenga placeholders sin resolver (`{{...}}`).
+3. Comprueba que `.gitattributes` y `.claude/gentle-ai-stop-hook.off` están presentes en el repositorio (si se copió a mano, incluye las carpetas ocultas).
+4. Asegura que ningún archivo concreto contenga placeholders sin resolver (`{{...}}`).
    > **Exención intencional de plantillas:** Los archivos de plantilla reutilizable (`_TEMPLATE-adr.md`, `_TEMPLATE-fase.md` y `_TEMPLATE-task.md`) conservan sus placeholders intencionalmente para su uso futuro en nuevas decisiones, fases o tareas.
-4. **Coherencia de árboles y rutas:** Si el proceso de inicialización se delega en subagentes en paralelo, el árbol de carpetas de `README.md`, `docs/arquitectura/overview.md` y la estructura en disco deben ser 100% idénticos y coherentes.
-5. Presenta al usuario un resumen de los archivos creados o actualizados.
+5. **Coherencia de árboles y rutas:** Si el proceso de inicialización se delega en subagentes en paralelo, el árbol de carpetas de `README.md`, `docs/arquitectura/overview.md` y la estructura en disco deben ser 100% idénticos y coherentes.
+6. Presenta al usuario un resumen de los archivos creados o actualizados.
 
 ---
 
@@ -95,7 +99,7 @@ Una vez completada la documentación fundacional:
    # 2. Refrescar registro de skills de Gentle AI (genera/actualiza .atl/skill-registry.md)
    gentle-ai skill-registry refresh
 
-   # 3. Añadir documentación fundacional y realizar el primer commit (incluyendo .atl/skill-registry.md)
+   # 3. Añadir documentación fundacional y realizar el primer commit (incluyendo .atl/skill-registry.md, .gitattributes y .claude/gentle-ai-stop-hook.off)
    git add .
    git commit -m "docs: inicializar arquitectura y documentacion fundacional"
 

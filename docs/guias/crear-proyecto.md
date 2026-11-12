@@ -20,9 +20,10 @@ Antes de comenzar, asegúrate de contar con las siguientes herramientas en tu en
 
 - **Git** instalado y accesible desde la línea de comandos (`git --version`).
 - **Un agente de IA compatible**: Optimizado para [Claude Code](https://claude.ai/code), [Google Antigravity](https://github.com/google/antigravity), [Cursor](https://www.cursor.com) o [OpenCode](https://github.com/opencode-ai).
+- **Equipo configurado** para trabajar con agentes (reglas personales, hook de revisión, memoria): sigue la [guía de configuración de un equipo nuevo](configurar-equipo.md) si es la primera vez en este ordenador.
 - **Gentle AI Suite** instalada globalmente (`gentle-ai --version`):
   - **Skill Registry**: Para indexar y refrescar skills disponibles (`gentle-ai skill-registry refresh`).
-  - **RDD (Receipt-Driven Development)**: Para revisiones de calidad sin esperar a commits (`gentle-ai review assess`).
+  - **RDD (Receipt-Driven Development)**: Para revisiones de calidad módulo a módulo, sin esperar a commits (`gentle-ai review assess` con `--projection staged`).
   - **Engram**: Para persistencia de memoria contextual entre sesiones de trabajo.
 
 ---
@@ -201,11 +202,13 @@ Con la documentación fundacional aprobada y Git configurado, el desarrollo de c
    - Recuerda: **Plan antes que código**.
 4. **Desarrollo y Revisión RDD**:
    - Implementa guiado por pruebas (TDD).
-   - Al finalizar un bloque de trabajo, evalúa los cambios en el árbol de trabajo con:
+   - Al terminar cada módulo pequeño (un archivo o un grupo de archivos de una misma pieza), prepara solo sus archivos y evalúalo antes de pasar al siguiente:
      ```bash
-     gentle-ai review assess
+     git add <archivos>
+     gentle-ai review assess --projection staged
      ```
-   - Recuerda: en este flujo, comitear cambios ya revisados no vuelve a disparar otra revisión.
+   - Recuerda: cada módulo revisado se comitea antes de preparar el siguiente, y comitear módulos ya revisados no vuelve a disparar otra revisión. Aprobar el plan de la tarea autoriza estos commits en su rama de trabajo; cualquier otra operación de git se aprueba aparte.
+   - Mientras trabajas, ejecuta solo los tests del módulo; la suite completa, una vez antes de cada commit.
 5. **Integración continua**:
    - Una vez validados los tests y la revisión RDD, fusiona la rama de trabajo hacia `develop` utilizando `--no-ff` para preservar la trazabilidad histórica:
      ```bash

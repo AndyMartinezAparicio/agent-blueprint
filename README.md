@@ -21,8 +21,8 @@ Agent Blueprint parte de una premisa fundamental: **la IA es un acelerador de ej
 - **Regla de oro**: **Un solo escritor a la vez**. Los subagentes no conversan con el usuario humano ni toman decisiones de alto nivel.
 
 ### 3. Control total de permisos y Git (Autoría humana)
-- **Lectura libre, mutación estricta**: El agente puede leer el árbol y explorar archivos con total libertad.
-- **Aprobación previa**: Cualquier creación, modificación o eliminación de archivos, así como cualquier comando de Git que altere el estado (`commit`, `branch`, `merge`, `tag`, `push`), requiere proponer el cambio exacto y recibir aprobación explícita del usuario.
+- **Lectura y edición libres, git y borrados con aprobación**: El agente puede leer y editar archivos sin pedir permiso dentro de una tarea con plan aprobado.
+- **Aprobación previa**: Cualquier comando de Git que altere el estado (`commit`, `branch`, `merge`, `tag`, `push`) y cualquier borrado requieren proponer el comando exacto y recibir aprobación explícita del usuario. **Única excepción**: los commits por módulo en la rama de trabajo de una tarea con plan aprobado; el agente informa del hash de cada uno. Push, merge, tags, ramas y cualquier commit en `develop` o `main` siempre se aprueban.
 - **Autoría 100% humana**: En los commits no se incluyen menciones a asistentes ni etiquetas como `Co-Authored-By: Claude` o equivalentes de IA. El historial de Git refleja la responsabilidad del desarrollador.
 
 ### 4. Arquitectura Núcleo + Esqueleto (`skeleton/`) + Perfiles (`profiles/`)
@@ -50,7 +50,7 @@ flowchart LR
 2. **`BOOTSTRAP.md` (Entrevista Día 0)**: La IA formula preguntas estratégicas para desglosar objetivos, alcance, restricciones y arquitectura.
 3. **`docs/`**: Se formalizan los documentos de visión, especificación funcional, backlog de fases y ADRs (Architectural Decision Records).
 4. **`odd/tasks/<feature>.md`**: Implementación mediante *Organic Driven Development* (ODD). Cada tarea incluye plan detallado, criterios de aceptación y tests unitarios previos al código productivo.
-5. **`gentle-ai review`**: Evaluación bajo *receipt-driven development / revisión nativa* (RDD) con `gentle-ai review assess` sobre los cambios del árbol de trabajo en cuanto se terminan, sin esperar a commits. Hacer commit no dispara otra revisión de los cambios ya revisados.
+5. **`gentle-ai review`**: Evaluación bajo *receipt-driven development / revisión nativa* (RDD), módulo a módulo mientras se implementa: se preparan solo los archivos del módulo (`git add <archivos>`) y se revisa con `--projection staged`, sin esperar a commits. Cada módulo revisado se comitea antes de preparar el siguiente; hacer commit no dispara otra revisión.
 6. **Merge a `develop`**: Integración continua en la rama activa mediante *pull request* o merge explícito con `--no-ff`.
 7. **Release a `main`**: Despliegue de versiones estables etiquetadas formalmente mediante etiquetas semánticas `vX.Y.Z`.
 
@@ -73,7 +73,7 @@ Utiliza esta plantilla para arrancar un desarrollo limpio con la estructura de i
   ```
 
 > [!TIP]
-> Consulta la [**Guía Completa de Creación de Proyectos**](docs/guias/crear-proyecto.md) para ver los comandos de terminal (PowerShell y Bash), la chuleta (*cheat-sheet*) de preguntas para la entrevista del Día 0 y la lista de verificación final.
+> Consulta la [**Guía Completa de Creación de Proyectos**](docs/guias/crear-proyecto.md) para ver los comandos de terminal (PowerShell y Bash), la chuleta (*cheat-sheet*) de preguntas para la entrevista del Día 0 y la lista de verificación final. Si trabajas desde un ordenador nuevo, configúralo antes con la [**guía de configuración de equipo**](docs/guias/configurar-equipo.md).
 
 ### Modo 2 — Mejorar o ampliar esta plantilla
 Si deseas contribuir o personalizar el propio sistema Agent Blueprint:
@@ -95,7 +95,8 @@ agent-blueprint/
 ├── README.md                      # Este documento
 ├── docs/                          # Documentación del sistema y hoja de ruta
 │   ├── guias/                     # Guías prácticas y tutoriales de uso
-│   │   └── crear-proyecto.md      # Guía canónica paso a paso para inicializar proyectos
+│   │   ├── crear-proyecto.md      # Guía canónica paso a paso para inicializar proyectos
+│   │   └── configurar-equipo.md   # Configuración de un equipo nuevo para trabajar con agentes
 │   ├── plan/                      # Roadmap y evolución de la plantilla
 │   └── arquitectura/              # Principios de diseño del blueprint y ADRs
 ├── profiles/                      # Perfiles técnicos por plataforma
@@ -133,7 +134,7 @@ Antes de autorizar cualquier propuesta arquitectónica o bloque de código signi
 - **Agentes de IA**: Optimizado para **Claude Code**, **Google Antigravity**, **Cursor** y **OpenCode**.
 - **Gentle AI Suite**:
   - **ODD (Organic Driven Development)**: Gestión de tareas atómicas y tests ejecutables en `odd/tasks/`.
-  - **RDD (receipt-driven development / revisión nativa)**: Evaluación con `gentle-ai review assess` sobre el árbol de trabajo en cuanto se terminan los cambios; comitear no re-ejecuta la revisión de cambios ya evaluados.
+  - **RDD (receipt-driven development / revisión nativa)**: Revisión modular con `gentle-ai review assess` y `--projection staged` sobre los archivos preparados de cada módulo en cuanto se termina; comitear no re-ejecuta la revisión de módulos ya evaluados.
   - **Engram**: Preservación de memoria técnica de sesión a sesión.
   - **CodeGraph**: Comprensión semántica de símbolos antes de manipular código fuente.
 

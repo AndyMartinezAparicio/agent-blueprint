@@ -45,6 +45,6 @@ Al invocar subagentes mediante la herramienta de subagentes en Claude Code, sele
 ## 🔍 Ciclo de Revisiones Nativas (Gentle AI Review)
 
 - Sigue las transiciones de `gentle-ai review` tal como las devuelve la herramienta.
-- **Evaluación sobre el árbol de trabajo**: La revisión se evalúa y se propone sobre los cambios del árbol de trabajo en cuanto se terminan (`gentle-ai review assess` sobre los cambios actuales), sin esperar a que haya commits.
-- **Hacer commit no dispara otra revisión**: Los cambios ya revisados en el árbol de trabajo se comitean sin revisarse otra vez; la regla de Gentle AI de revisar tras cada commit (`--committed-only`) no se aplica en este proyecto. Si el commit incluye cambios que no se revisaron, esos sí se revisan antes de comitear.
+- **Revisión modular**: Cada módulo pequeño (un archivo o un grupo de archivos de una misma pieza) se revisa en cuanto se termina: se preparan solo sus archivos con `git add <archivos>` y se evalúa y revisa con `--projection staged` (`gentle-ai review assess` y `gentle-ai review status ... --projection staged`). Cada módulo revisado se comitea antes de preparar el siguiente, para que no se revise dos veces.
+- **Hacer commit no dispara otra revisión**: Los módulos ya revisados se comitean sin revisarse otra vez; la regla de Gentle AI de revisar tras cada commit (`--committed-only`) no se aplica en este proyecto. Si el commit incluye cambios que no se revisaron, esos sí se revisan antes de comitear.
 - **Punto de decisión humano**: Cada candidato de riesgo medio o alto pide consentimiento al usuario (revisar o saltar). Nunca se elude ni se responde por el usuario. El usuario lo controla con `gentle-ai review mode status|enable|disable`.

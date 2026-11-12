@@ -26,6 +26,7 @@ A continuación se detalla el mapa de documentos y la responsabilidad exclusiva 
 
 ### 3. Planificación, Roadmap y Fases
 * [Roadmap del Proyecto](plan/roadmap.md): **Único lugar** donde reside el estado oficial de avance de cada fase (*Pendiente*, *En curso*, *Aprobada*), versiones asociadas y reglas de release/fusión.
+* [Pruebas pendientes](plan/pruebas-pendientes.md): Pruebas en dispositivo que el usuario hace cuando tiene tiempo (pasos y resultado esperado), sin parar el desarrollo.
 * [Fases de Desarrollo](plan/fases/): Especificaciones detalladas de alcance y criterios de aceptación por fase.
   * [Plantilla de Fase](plan/fases/_TEMPLATE-fase.md): Estructura canónica para desglosar cada fase (alcance, requisitos cubiertos, criterios de aceptación verificables y riesgos).
 

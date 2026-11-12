@@ -40,7 +40,7 @@ Antes de presentar la tarea al usuario como finalizada, deben cumplirse todos lo
 - [ ] **Tests Unitarios y de Integración en verde:** Todas las pruebas pasan exitosamente.
 - [ ] **Cero strings quemados:** Todos los textos visibles utilizan el sistema de internacionalización.
 - [ ] **Cero colores hardcodeados:** Se emplean exclusivamente los tokens de `design/DESIGN.md`.
-- [ ] **Revisión RDD:** Evaluación con `gentle-ai review assess` superada sobre los cambios del árbol de trabajo en cuanto se terminan de escribir (antes de proponer commits; comitear cambios ya revisados no dispara otra revisión).
+- [ ] **Revisión RDD:** Cada módulo revisado con `gentle-ai review` sobre lo preparado (`--projection staged`) en cuanto se termina, y comiteado antes de preparar el siguiente; comitear no dispara otra revisión.
 
 ---
 
@@ -57,10 +57,10 @@ Antes de presentar la tarea al usuario como finalizada, deben cumplirse todos lo
 ```
 
 ### 3. Evaluaciones de Gentle AI Review
-*(La revisión con `gentle-ai review assess` se evalúa sobre el árbol de trabajo al terminar los cambios, antes de proponer commits. Hacer commit de cambios ya revisados no dispara otra revisión).*
+*(Un registro por módulo: se revisa lo preparado con `git add <archivos>` y `--projection staged` al terminar el módulo. Hacer commit de módulos ya revisados no dispara otra revisión).*
 - **ID de Evaluación:** `REV-{{ID}}`
 - **Resultado:** Aprobado / Sin observaciones críticas pendientes.
 
-### 4. Commits Aprobados
-*(Los commits se proponen al usuario antes de ejecutarse; los cambios ya revisados en el árbol de trabajo no se vuelven a revisar. Registrar aquí los hashes finales una vez confirmados).*
+### 4. Commits
+*(Con el plan de la tarea aprobado, cada módulo revisado se comitea en la rama de trabajo sin pedir aprobación; registrar aquí cada hash. Push, merge y tags siguen necesitando aprobación).*
 - `feat(modulo): {{descripcion del commit}}` — `hash: {{HASH}}`
