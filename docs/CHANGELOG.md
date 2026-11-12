@@ -6,6 +6,24 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/
 
 ---
 
+## [Sin publicar]
+
+### Añadido
+- **Guía `docs/guias/configurar-equipo.md`**: Configuración de un equipo nuevo para trabajar con agentes (prerrequisitos, reglas personales de `~/.claude/CLAUDE.md`, envoltorio del hook de revisión, memoria de Claude Code y de Engram, prompt listo para pegar y lista de comprobación).
+- **Esqueleto**: `docs/plan/pruebas-pendientes.md` (plantilla), `.gitattributes` (finales de línea LF) y `.claude/gentle-ai-stop-hook.off` (aviso de revisión al final de cada respuesta desactivado).
+- **`skeleton/docs/guias/desarrollo.md`**: secciones "Antes de cada commit" y "Equipo nuevo con Gentle AI".
+- **Perfil `mobile-flutter-store.md`**: sin `flutter build/run/install` sin permiso, pruebas pendientes en el móvil con excepción de riesgo alto y anuncios solo con identificadores de prueba oficiales.
+
+### Cambiado
+- **Sincronización con las reglas vigentes de Byepic** en `skeleton/AGENTS.md` y `skeleton/CLAUDE.md`: lectura y edición libres, git y borrados con aprobación; commits por módulo sin aprobación en la rama de trabajo de una tarea con plan aprobado; prototipo primero en experiencia de uso dudosa; suite completa una vez antes de cada commit; pruebas en dispositivo sin parar el desarrollo; publicación de cada fase aprobada en `main`; ramas `docs/*` y `hotfix/*`; umbral de delegación a subagentes (unas 30 líneas); revisión modular con `--projection staged`; regla de idioma (español).
+- `README.md`, `docs/guias/crear-proyecto.md` y `skeleton/BOOTSTRAP.md` alineados con las reglas anteriores.
+
+### Eliminado
+- La prohibición general de commits automáticos y el permiso previo para cualquier edición, sustituidos por las reglas de permisos de arriba.
+- La revisión sobre el árbol de trabajo, sustituida por la revisión modular de archivos preparados.
+
+---
+
 ## [0.1.0] - 2026-10-18
 
 ### Añadido

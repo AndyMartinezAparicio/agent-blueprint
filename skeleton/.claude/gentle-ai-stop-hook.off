@@ -1,0 +1,2 @@
+Disables the Gentle AI review stop hook for this project (see AGENTS.md, Gentle AI).
+Reviews run per module with --projection staged while implementing, not on commit.
