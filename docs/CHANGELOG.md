@@ -15,7 +15,7 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/
 - **Perfil `mobile-flutter-store.md`**: sin `flutter build/run/install` sin permiso, pruebas pendientes en el móvil con excepción de riesgo alto y anuncios solo con identificadores de prueba oficiales.
 
 ### Cambiado
-- **Sincronización con las reglas vigentes de Byepic** en `skeleton/AGENTS.md` y `skeleton/CLAUDE.md`: lectura y edición libres, git y borrados con aprobación; commits por módulo sin aprobación en la rama de trabajo de una tarea con plan aprobado; prototipo primero en experiencia de uso dudosa; suite completa una vez antes de cada commit; pruebas en dispositivo sin parar el desarrollo; publicación de cada fase aprobada en `main`; ramas `docs/*` y `hotfix/*`; umbral de delegación a subagentes (unas 30 líneas); revisión modular con `--projection staged`; regla de idioma (español).
+- **Sincronización con las reglas vigentes de Byepic** en `skeleton/AGENTS.md` y `skeleton/CLAUDE.md`: lectura y edición libres, git y borrados con aprobación; commits por módulo sin aprobación en la rama de trabajo de una tarea con plan aprobado; prototipo primero en experiencia de uso dudosa; suite completa una vez antes de cada commit; pruebas en dispositivo sin parar el desarrollo; publicación de cada fase aprobada en `main`; ramas `docs/*` y `hotfix/*`; umbral de delegación a subagentes (unas 100 líneas); revisión modular con `--projection staged`; regla de idioma (español).
 - `README.md`, `docs/guias/crear-proyecto.md` y `skeleton/BOOTSTRAP.md` alineados con las reglas anteriores.
 
 ### Eliminado
