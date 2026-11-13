@@ -10,7 +10,7 @@
 
 - **Agente Principal:** Se ejecuta sobre el modelo superior (Opus / Sonnet 3.7 / según configuración de sesión) para comprender la intención del usuario, diseñar planes de implementación, formular preguntas aclaratorias y realizar revisiones de código de alto nivel.
 - **Subagentes y Delegación:** delega solo cuando compensa, porque cada subagente gasta unos 100.000 tokens leyendo contexto antes de escribir ([umbral completo en `AGENTS.md`](AGENTS.md#agentes-y-subagentes)):
-  - Cambios de menos de unas 30 líneas (corregir un test, una frase, un import, aplicar un aviso de revisión), git de estado y consultas: los hace el agente principal directamente.
+  - Cambios de menos de unas 100 líneas (corregir un test, una frase, un import, aplicar un aviso de revisión, un widget pequeño con su test), git de estado y consultas: los hace el agente principal directamente.
   - Trabajo mediano o grande (un módulo con su código, tests y docs): invoca un subagente con `model: "sonnet"`.
   - Solo documentación mecánica o búsquedas simples: `model: "haiku"`.
   - Las tareas de documentación de una tarea se agrupan en un solo encargo, no uno por archivo.

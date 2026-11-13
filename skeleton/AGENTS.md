@@ -137,7 +137,7 @@ Todo ciclo de desarrollo debe seguir secuencialmente estos 11 pasos:
 
 - **Rol del Agente Principal:** Entiende el contexto global, planifica, toma decisiones de alto nivel, interactúa con el usuario, revisa la calidad del código y sintetiza los resultados.
 - **Delegación solo cuando compensa:** cada subagente gasta unos 100.000 tokens leyendo contexto antes de escribir. Umbral:
-  - **Cambios de menos de unas 30 líneas** (corregir un test, una frase, un import, aplicar un aviso de revisión), git de estado y consultas: los hace el agente principal directamente.
+  - **Cambios de menos de unas 100 líneas** (corregir un test, una frase, un import, aplicar un aviso de revisión, un widget pequeño con su test), git de estado y consultas: los hace el agente principal directamente.
   - **Trabajo mediano o grande** (un módulo con su código, tests y docs): **Sonnet**.
   - **Solo documentación mecánica** o búsquedas simples: **Haiku**.
 - Las tareas de documentación de una tarea se agrupan en un solo encargo, no uno por archivo.
